@@ -10,15 +10,15 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatar.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatarEvents.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/tutorial";
     Constants.UserBehaviorModules = [
-        "lights.js", "gridFloor.js", "joeTheBox.js", "simpleSpin.js"
+        "lights.js", "joeTheBox.js", "simpleSpin.js"
     ];
 
-    const frameColor = 0x888888;
+    // const frameColor = 0x888888;
 
     Constants.DefaultCards = [
         {
@@ -31,7 +31,6 @@ export function init(Constants) {
                 shadow: true,
                 layers: ["walk"],
                 translation:[0, -1.7, 0],
-                shadow: true,
 
                 placeholder: true,
                 placeholderSize: [100, 0.01, 100],
@@ -75,7 +74,7 @@ export function init(Constants) {
                 translation:[-4, 0.4, -10],
                 shadow: true,
             }
-        },     
+        },
         {
             card: {
                 name:"Imported Box",
@@ -87,6 +86,6 @@ export function init(Constants) {
                 //rotation:[0, Math.pi/4, 0],
                 shadow: true,
             }
-        },     
+        },
     ];
 }

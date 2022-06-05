@@ -12,7 +12,7 @@ class PendulumActor {
             }
 
             let card;
-            let translation = [t[0], t[1] - i * 2, t[2]];
+            let translation = [0, 0 - i * 2, 0];
             let name = `link${i}`;
             if (i === d - 1) {
                 card = this.createCard({
@@ -21,6 +21,7 @@ class PendulumActor {
                     modelType: "glb",
                     translation,
                     name,
+                    parent: this,
                     pendulumProto: true,
                     behaviorModules: ["Rapier", "PendulumLink"],
                     noSave: true,
@@ -30,6 +31,7 @@ class PendulumActor {
                     type: "object",
                     translation,
                     name,
+                    parent: this,
                     behaviorModules: ["Rapier", "PendulumLink"],
                     noSave: true,
                 });
@@ -57,6 +59,7 @@ class PendulumActor {
             let card = this.createCard({
                 type: "object",
                 name: `joint${i}`,
+                parent: this,
                 behaviorModules: ["Rapier"],
                 noSave: true,
             });
@@ -75,14 +78,6 @@ class PendulumActor {
             parent: this,
             behaviorModules: ["PendulumLink"],
         });
-
-        this.listen("setTranslation", "translationSet");
-    }
-
-    translationSet(v3) {
-        if (this.links) {
-            this.links[0].say("setTranslation", v3);
-        }
     }
 
     removeObjects() {
@@ -106,7 +101,7 @@ class PendulumPawn {
             this.obj = null;
         }
 
-        let geometry = new Worldcore.THREE.BoxGeometry(0.2, 0.2, 0.2);
+        let geometry = new Worldcore.THREE.BoxGeometry(0.5, 0.5, 0.5);
         let material = new Worldcore.THREE.MeshStandardMaterial({color: this.actor._cardData.color || 0xee8888});
         this.obj = new Worldcore.THREE.Mesh(geometry, material);
         this.obj.castShadow = this.actor._cardData.shadow;

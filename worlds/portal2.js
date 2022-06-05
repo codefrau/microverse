@@ -1,5 +1,4 @@
-// tutorial2.js
-// Copyright 2021 by Croquet Corporation, Inc. All Rights Reserved.
+// Copyright 2022 by Croquet Corporation, Inc. All Rights Reserved.
 // https://croquet.io
 // info@croquet.io
 
@@ -10,28 +9,41 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "propertySheet.js", "stickyNote.js", "avatar.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatarEvents.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "lights.js"
+        "lights.js", "spin.js"
     ];
 
-    const frameColor = 0x888888;
+    const frameColor = 0xFF0000;
 
     Constants.DefaultCards = [
         {
             card: {
+                name: "entry",
+                translation: [-3, 0, 4],
+                rotation: [0, -0.2797746092750467, 0, 0.960065710253728],
+                spawn: "default",
+            }
+        },
+       {
+            card: {
                 name:"world model",
+                dataScale:[1,1,1],
+                translation:[22,-1.7,-20],
+                rotation: [0, Math.PI, 0],
+                layers: ["walk"],
                 type: "3d",
-                dataLocation: "./assets/3D/artgallery_042122.glb.zip",
+                // dataLocation: "./assets/3D/oilrefinery_042122.glb.zip",
                 singleSided: true,
                 shadow: true,
-                layers: ["walk"],
-                translation:[0, -1.7, 0],
-                dataScale:[1,1,1],
-                shadow: true,
+
+                placeholder: true,
+                placeholderSize: [100, 0.1, 100],
+                placeholderColor: 0xcccccc,
+                placeholderOffset: [0, 0, 0],
             }
         },
         {
@@ -40,56 +52,45 @@ export function init(Constants) {
                 layers: ["light"],
                 type: "lighting",
                 behaviorModules: ["Light"],
-                dataLocation: "./assets/sky/shanghai_riverside_2k.exr",
+                dataLocation: "./assets/sky/syferfontein_1d_clear_1k.exr",
                 dataType: "exr",
             }
         },
         {
             card: {
-                name: "image card",
-                translation: [0, 0.4, -10],
-                //rotation: [0, Math.PI / 2, 0],
-                scale: [4, 4, 4],
-                type: "2d",
-                textureType: "image",
-                textureLocation: "./assets/images/CroquetLogo_RGB.jpg",
-                fullBright: true,
-                frameColor: 0xcccccc,
-                color: 0xbbbbbb,
-                cornerRadius: 0.05,
-                depth: 0.05,
-                shadow: true,
-            }
-        },
-        {
-            card: {
-                name:"Imported Box",
-                type: "3d",
-                dataLocation: "./assets/3D/testcube_1m.glb.zip",
-                layers: ["pointer"],
-                translation:[4, 0.4, -10],
-                dataScale:[1,1,1],
-                //rotation:[0, Math.pi/4, 0],
-                shadow: true,
-            }
-        },
-        {
-            card: {
-                name: "portal",
+                name: "portal-to-one",
                 className: "PortalActor",
-                translation: [11.9, 0, -5],
-                rotation: [0, -Math.PI / 2, 0],
+                translation: [5, 0, -5],
+                rotation: [0, Math.PI / 2, 0],
                 type: "2d",
                 layers: ["pointer", "portal"],
                 color: 0xFF66CC,
                 frameColor: frameColor,
-                width: 2,
+                width: 4,
                 height: 4,
-                depth: 0.001,
+                depth: 0.2,
                 cornerRadius: 0.05,
-                multiuser: true,
+                shadow: true,
                 portalURL: "?world=portal1",
+                sparkle: false,
             }
         },
+        {
+            card: {
+                translation: [0, -1.7, -5],
+                rotation: [0, 0, 0],
+                layers: ["pointer"],
+                name: "bunny",
+                dataLocation: "3gEXauiO9PWsrE8v7T5rxpkbyvkR-69K1L7xKuHVbmsIDxMTFxRdSEgBDgsCFEkSFEkEFQgWEgITSQ4ISBJIIAMxBR4LLhQmDDYEJT8DVCAfBhEeEDIsMD4-VUgOCEkEFQgWEgITSQoOBBUIEQIVFAJIK1UBAVAMKgQRCwAWDgZWNQxUPVFXACUSI1MAVy0QCBdWFTQIVhYyNBBXDEgDBhMGSDQ2XgsiNhIIIRcpESpSAwMQMCUQVAMREwE9BiYRMCkQV14PCRJTAVVWKCo",
+                dataScale: [0.02, 0.02, 0.02],
+                fileName: "/bunny-breakdance.zip",
+                modelType: "zip",
+                license: "CC-BY",
+                attribution: "'Bunny Breakdance' (https://skfb.ly/ouFFL) by pixelshoppe is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/)",
+                shadow: true,
+                singleSided: true,
+                type: "3d",
+            }
+        }
     ];
 }
